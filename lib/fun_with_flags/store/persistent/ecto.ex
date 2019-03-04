@@ -1,5 +1,3 @@
-if Code.ensure_loaded?(Ecto) do
-
 defmodule FunWithFlags.Store.Persistent.Ecto do
   @moduledoc false
 
@@ -212,5 +210,3 @@ defmodule FunWithFlags.Store.Persistent.Ecto do
   end
 
 end
-
-end # Code.ensure_loaded?

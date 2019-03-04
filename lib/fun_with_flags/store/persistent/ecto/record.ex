@@ -1,5 +1,3 @@
-if Code.ensure_loaded?(Ecto) do
-
 defmodule FunWithFlags.Store.Persistent.Ecto.Record do
   @moduledoc false
   use Ecto.Schema
@@ -67,5 +65,3 @@ defmodule FunWithFlags.Store.Persistent.Ecto.Record do
     {to_string(type), serialize_target(target)}
   end
 end
-
-end # Code.ensure_loaded?

@@ -1,5 +1,3 @@
-if Code.ensure_loaded?(Ecto) do
-
 defmodule FunWithFlags.Store.Serializer.Ecto do
   @moduledoc false
 
@@ -51,5 +49,3 @@ defmodule FunWithFlags.Store.Serializer.Ecto do
 
   defp parse_float(f_s), do: String.to_float(f_s)
 end
-
-end # Code.ensure_loaded?
