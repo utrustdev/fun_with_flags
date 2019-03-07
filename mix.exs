@@ -28,7 +28,7 @@ defmodule FunWithFlags.Mixfile do
     [extra_applications: extra_applications(Mix.env),
      mod: {FunWithFlags.Application, []}]
   end
- 
+
   defp extra_applications(:test), do: local_extra_applications()
   defp extra_applications(:dev),  do: local_extra_applications()
   defp extra_applications(_),     do: [:logger]
@@ -39,7 +39,7 @@ defmodule FunWithFlags.Mixfile do
   #
   defp local_extra_applications do
     if System.get_env("PERSISTENCE") == "ecto" do
-      [:logger, :ecto, :ecto_sql, :postgrex]
+      [:logger, :ecto, :postgrex]
     else
       [:logger]
     end
@@ -60,7 +60,7 @@ defmodule FunWithFlags.Mixfile do
       {:mock, "~> 0.3", only: :test},
 
       {:redix, "~> 0.9.1", optional: true},
-      {:ecto_sql, "~> 3.0", optional: true},
+      {:ecto, "~> 2.2", optional: true},
       {:postgrex, "~> 0.13", optional: true, only: [:dev, :test]},
 
       {:phoenix_pubsub, "~> 1.0", optional: true},
@@ -90,7 +90,7 @@ defmodule FunWithFlags.Mixfile do
   #
   defp run_tests__redis_pers__redis_pubsub(_) do
     Mix.shell.cmd(
-      "mix test --color --force --exclude phoenix_pubsub --exclude ecto_persistence", 
+      "mix test --color --force --exclude phoenix_pubsub --exclude ecto_persistence",
       env: [
         {"CACHE_ENABLED", "true"},
       ]
@@ -113,7 +113,7 @@ defmodule FunWithFlags.Mixfile do
   #
   defp run_tests__redis_pers__phoenix_pubsub(_) do
     Mix.shell.cmd(
-      "mix test --color --force --no-start --exclude redis_pubsub --exclude ecto_persistence --exclude phoenix_pubsub:with_ecto --include phoenix_pubsub:with_redis --include phoenix_pubsub:true", 
+      "mix test --color --force --no-start --exclude redis_pubsub --exclude ecto_persistence --exclude phoenix_pubsub:with_ecto --include phoenix_pubsub:with_redis --include phoenix_pubsub:true",
       env: [
         {"CACHE_ENABLED", "true"},
         {"PUBSUB_BROKER", "phoenix_pubsub"},
@@ -138,7 +138,7 @@ defmodule FunWithFlags.Mixfile do
   #
   defp run_tests__ecto_pers__phoenix_pubsub(_) do
     Mix.shell.cmd(
-      "mix test --color --force --no-start --exclude redis_pubsub --exclude redis_persistence --exclude phoenix_pubsub:with_redis --include phoenix_pubsub:with_ecto --include phoenix_pubsub:true --include ecto_persistence", 
+      "mix test --color --force --no-start --exclude redis_pubsub --exclude redis_persistence --exclude phoenix_pubsub:with_redis --include phoenix_pubsub:with_ecto --include phoenix_pubsub:true --include ecto_persistence",
       env: [
         {"CACHE_ENABLED", "true"},
         {"PUBSUB_BROKER", "phoenix_pubsub"},
